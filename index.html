@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Geo Espaço e Lazer | Piscina e lazer em João Pessoa</title>
+<meta name="description" content="Geo Espaço e Lazer, no Mussure em João Pessoa. Piscina, quadra de areia e área coberta aberta 24 horas.">
+<meta name="theme-color" content="#0c1a1d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0c1a1d;--teal:#1f8f94;--sky:#9adbee;--amber:#f5b041;--sand:#f3e6cf;--accent:var(--sky);
+--head:"Bricolage Grotesque","Trebuchet MS",Arial,sans-serif;--body:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--body);color:#fff;background:var(--ink);line-height:1.55;min-height:100vh;
+padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body.night{--accent:var(--amber)}
+body.lock{overflow:hidden}
+h1,h2,h3{font-family:var(--head);margin:0;line-height:1.02;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* vídeo de fundo */
+.bg{position:fixed;inset:0;z-index:-2;background:var(--ink) center/cover no-repeat}
+.bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.bg video{transition:filter 1.6s ease}
+body.night .bg video{filter:brightness(.55) saturate(.85) contrast(1.05)}
+.veil{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(12,26,29,.5),rgba(12,26,29,.3) 40%,rgba(12,26,29,.75))}
+.veil::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,28,.78),rgba(5,10,28,.55) 40%,rgba(5,10,28,.9));opacity:0;transition:opacity 1.6s ease}
+body.night .veil::after{opacity:1}
+
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;text-align:center;pointer-events:all}
+#intro .half{position:absolute;left:0;right:0;height:50.5%;background:var(--ink);transition:transform 1s cubic-bezier(.77,0,.18,1)}
+#intro .top{top:0}#intro .bot{bottom:0}
+#intro.open .top{transform:translateY(-101%)}#intro.open .bot{transform:translateY(101%)}
+#intro .mark{position:relative;transition:opacity .4s,transform .6s}
+#intro.open .mark{opacity:0;transform:scale(.94)}
+#intro svg{width:132px;height:auto;overflow:visible}
+#intro svg *{fill:none;stroke:var(--sky);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.3s ease forwards}
+#intro svg .l2{animation-delay:.35s;stroke:var(--amber)}#intro svg .l3{animation-delay:.7s}
+@keyframes draw{to{stroke-dashoffset:0}}
+#intro h1{font-size:clamp(3.2rem,14vw,6rem);margin-top:14px;display:flex;justify-content:center;gap:.02em}
+#intro h1 span{display:inline-block;opacity:0;transform:translateY(40%);animation:up .7s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+#intro p{margin:.6rem 0 0;font-size:1.05rem;color:var(--sky);opacity:0;animation:up .7s 1.4s forwards}
+#skip{position:absolute;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:2;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:99px;padding:8px 16px;font:inherit;cursor:pointer}
+
+/* layout */
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+header.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10;padding:14px 0;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-family:var(--head);font-weight:800;font-size:1.15rem;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:99px;font-weight:700;text-decoration:none;border:2px solid var(--accent);color:#fff;background:transparent;cursor:pointer;font:inherit;font-weight:700;transition:background .2s,color .2s}
+.pill.fill{background:var(--accent);color:#0c1a1d}
+.pill:hover{background:var(--accent);color:#0c1a1d}
+
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:110px 0 64px}
+.hero h1{font-size:clamp(3.4rem,13vw,9rem);font-weight:800;max-width:10ch}
+.hero p.lead{font-size:clamp(1.05rem,2.6vw,1.45rem);max-width:30em;margin:22px 0 28px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 28px;padding:0;list-style:none}
+.facts li{padding:7px 14px;border-radius:99px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:.95rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+
+section{padding:84px 0}
+h2{font-size:clamp(2.2rem,6vw,4rem);font-weight:800}
+.sub{max-width:34em;margin:14px 0 36px;font-size:1.1rem;color:rgba(255,255,255,.88)}
+
+/* cena dia/noite */
+.scene{--h:clamp(250px,42vw,340px);position:relative;height:var(--h);border-radius:28px;overflow:hidden;isolation:isolate;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.sky{position:absolute;inset:0;transition:opacity 1.6s ease}
+.sky.day{background:linear-gradient(180deg,#4fb3e8,#b9e6f4 68%,#f8e3b5)}
+.sky.nite{background:linear-gradient(180deg,#040817,#14224a 65%,#3a3866);opacity:0}
+.scene.night .sky.nite{opacity:1}
+.stars{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.scene.night .stars{opacity:1}
+.stars i{position:absolute;border-radius:50%;background:#fff;animation:tw 2.6s ease-in-out infinite}
+@keyframes tw{50%{opacity:.25}}
+.orbit{position:absolute;left:50%;top:110%;width:0;height:0;transition:transform 1.7s cubic-bezier(.65,0,.35,1)}
+.orbit i{position:absolute;width:88px;height:88px;left:-44px;top:-44px;border-radius:50%}
+.sun{transform:translateY(calc(var(--h)*-.75));background:radial-gradient(circle at 35% 35%,#fff6c9,#ffc93c 60%,#ff9f1c);box-shadow:0 0 70px 26px rgba(255,200,80,.6)}
+.moon{transform:translateY(calc(var(--h)*.75));background:radial-gradient(circle at 30% 30%,#fff,#dfe6ff 70%,#b9c4f0);box-shadow:0 0 60px 16px rgba(190,205,255,.45)}
+.moon::before{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:rgba(120,135,190,.35);left:52px;top:22px;box-shadow:-22px 30px 0 -2px rgba(120,135,190,.3),4px 34px 0 -5px rgba(120,135,190,.3)}
+.hill{position:absolute;bottom:-34px;left:-12%;width:72%;height:100px;border-radius:50%;background:#2f9a6f;transition:background 1.6s}
+.hill.b{left:auto;right:-16%;width:78%;height:120px;background:#3fae80}
+.scene.night .hill{background:#0b1f19}.scene.night .hill.b{background:#10291f}
+.scene::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 50% 100%,rgba(255,120,40,.95),rgba(255,80,90,.45) 45%,transparent 72%)}
+.scene.turning::after{animation:glow 1.7s ease}
+@keyframes glow{0%,100%{opacity:0}50%{opacity:.95}}
+.switch{position:absolute;z-index:2;left:50%;bottom:22px;transform:translateX(-50%);width:216px;height:56px;padding:0;border-radius:99px;border:2px solid rgba(255,255,255,.75);background:rgba(0,0,0,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;font:inherit;font-weight:700;font-size:1.02rem;cursor:pointer;display:flex;align-items:center}
+.switch .knob{position:absolute;top:4px;left:4px;width:44px;height:44px;border-radius:50%;background:#ffd166;box-shadow:0 0 18px rgba(255,209,102,.9);transition:left .7s cubic-bezier(.65,0,.35,1),background .7s,box-shadow .7s}
+.scene.night .switch .knob{left:calc(100% - 52px);background:#e9eeff;box-shadow:0 0 18px rgba(200,212,255,.9)}
+.switch .t{flex:1;text-align:center;padding:0 14px 0 52px;transition:padding .7s}
+.scene.night .switch .t{padding:0 52px 0 14px}
+
+.gallery{margin-top:36px;scroll-margin-top:80px}
+.gallery[hidden]{display:none}
+.grid{transition:opacity .4s}.grid.out{opacity:0}
+.gbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;margin-bottom:22px}
+.gbar h3{font-size:clamp(1.8rem,5vw,2.8rem)}
+.grid{columns:3 260px;column-gap:14px}
+.grid button{display:block;width:100%;margin:0 0 14px;padding:0;border:0;border-radius:16px;overflow:hidden;cursor:zoom-in;background:#000;break-inside:avoid;animation:pop .6s both}
+.grid img{display:block;width:100%;height:auto;transition:transform .5s}
+.grid button:hover img{transform:scale(1.04)}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+/* contato */
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.info div{border-left:3px solid var(--accent);padding-left:16px}
+.info h3{font-size:1.25rem;margin-bottom:6px}
+.info p{margin:0;color:rgba(255,255,255,.9)}
+footer{padding:28px 0 40px;text-align:center;color:rgba(255,255,255,.7);font-size:.92rem}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:16px}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:88vh;border-radius:12px}
+#lb button{position:absolute;background:rgba(255,255,255,.16);border:0;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.5rem;cursor:pointer}
+#lb .x{top:calc(14px + env(safe-area-inset-top,0px));right:14px}#lb .p{left:10px}#lb .n{right:10px}
+
+@media(max-width:640px){.switch{width:200px}section{padding:64px 0}.hero{padding-bottom:48px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body class="lock">
+
+<div id="intro" aria-hidden="false">
+  <div class="half top"></div><div class="half bot"></div>
+  <div class="mark">
+    <svg viewBox="0 0 120 80" aria-hidden="true">
+      <path class="l1" pathLength="1" d="M10 44C12 18 34 6 60 6s48 12 50 38c-12-9-25-9-37 0-8-7-18-7-26 0-8-7-18-7-26 0-8-7-14-7-11 0z"/>
+      <path class="l2" pathLength="1" d="M60 6v58"/>
+      <path class="l3" pathLength="1" d="M8 74c10-7 20-7 30 0s20 7 30 0 20-7 30 0 10 4 14 0"/>
+    </svg>
+    <h1 aria-label="Geo">Geo</h1>
+    <p>Espaço e Lazer</p>
+  </div>
+  <button id="skip" type="button">Pular</button>
+</div>
+
+<div class="bg" id="bg" style="background-image:url(poster.jpg)">
+  <video id="vid" muted loop playsinline webkit-playsinline autoplay preload="auto" poster="poster.jpg" disablepictureinpicture aria-hidden="true">
+    <source src="bg.mp4" type="video/mp4">
+    <source src="bg.webm" type="video/webm">
+  </video>
+</div>
+<div class="veil"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Geo Espaço e Lazer</a>
+    <a class="pill" href="#espaco">Ver o espaço</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero"><div class="wrap">
+    <h1>Geo Espaço e Lazer</h1>
+    <p class="lead">Um espaço pensado para transformar momentos simples em memórias inesquecíveis!</p>
+    <ul class="facts">
+      <li>Nota 5.0 no Google (26 avaliações)</li>
+      <li>Aberto 24 horas</li>
+      <li>Mussure, João Pessoa</li>
+    </ul>
+    <div class="cta">
+      <a class="pill fill" href="#espaco">Ver o espaço de dia ou de noite</a>
+      <a class="pill" href="https://wa.me/5583987010086" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+  </div></div>
+
+  <section id="espaco"><div class="wrap">
+    <h2>Vire o dia e conheça o Geo</h2>
+    <p class="sub">Toque no botão e veja o céu virar. As fotos mudam junto, do Geo de dia para o Geo de noite.</p>
+    <div class="scene" id="scene">
+      <div class="sky day"></div><div class="sky nite"></div><div class="stars"></div>
+      <div class="orbit" id="orbit"><i class="sun"></i><i class="moon"></i></div>
+      <div class="hill"></div><div class="hill b"></div>
+      <button class="switch" id="tog" type="button" role="switch" aria-checked="false" aria-label="Alternar entre dia e noite"><span class="knob"></span><span class="t" id="tlabel">Virar a noite</span></button>
+    </div>
+    <div class="gallery" id="gallery">
+      <div class="gbar">
+        <h3 id="gtitle"></h3>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div></section>
+
+  <section id="contato"><div class="wrap">
+    <h2>Venha conhecer</h2>
+    <p class="sub">Fale com a gente para reservar o seu dia.</p>
+    <div class="info">
+      <div><h3>Endereço</h3><p>Rua Projetada, lote 2523<br>Mussure, João Pessoa, PB<br>CEP 58000-000</p><p style="margin-top:12px"><a class="pill" href="https://www.google.com/maps/search/?api=1&query=Geo+Espa%C3%A7o+e+Lazer+Mussure+Jo%C3%A3o+Pessoa" target="_blank" rel="noopener">Como chegar</a></p></div>
+      <div><h3>WhatsApp e telefone</h3><p>(83) 98701-0086</p><p style="margin-top:12px"><a class="pill fill" href="https://wa.me/5583987010086" target="_blank" rel="noopener">Chamar no WhatsApp</a></p></div>
+      <div><h3>Instagram</h3><p>@geo_espaco_e_lazer<br>9,5 mil seguidores</p><p style="margin-top:12px"><a class="pill" href="https://www.instagram.com/geo_espaco_e_lazer/" target="_blank" rel="noopener">Abrir o Instagram</a></p></div>
+    </div>
+  </div></section>
+</main>
+<footer>Geo Espaço e Lazer · Aberto 24 horas · João Pessoa, PB</footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="x" type="button" aria-label="Fechar">×</button>
+  <button class="p" type="button" aria-label="Foto anterior">‹</button>
+  <img alt="">
+  <button class="n" type="button" aria-label="Próxima foto">›</button>
+</div>
+
+<script>
+(function(){
+  var body=document.body, vid=document.getElementById('vid');
+
+  /* vídeo: autoplay mudo compatível com iOS/Android; retoma no primeiro toque se o sistema bloquear */
+  vid.muted=true; vid.defaultMuted=true; vid.setAttribute('muted',''); vid.setAttribute('playsinline','');
+  function play(){var p=vid.play();if(p&&p.catch)p.catch(function(){})}
+  play();
+  ['touchstart','click','scroll','keydown'].forEach(function(e){addEventListener(e,play,{once:true,passive:true})});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)play()});
+  vid.addEventListener('canplay',play);
+
+  /* intro */
+  var intro=document.getElementById('intro'),done=false;
+  var h=intro.querySelector('h1'),t=h.textContent;h.innerHTML='';
+  t.split('').forEach(function(c,i){var s=document.createElement('span');s.textContent=c;s.style.animationDelay=(.9+i*.12)+'s';h.appendChild(s)});
+  function enter(){
+    if(done)return;done=true;intro.classList.add('open');body.classList.remove('lock');play();
+    setTimeout(function(){intro.style.display='none';intro.setAttribute('aria-hidden','true')},1100);
+  }
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(enter,reduce?300:3300);
+  document.getElementById('skip').onclick=enter;
+
+  /* galeria dia/noite */
+  var photos={
+    dia:{titulo:'O Geo de dia',outro:'noite',fotos:[['dia-1.jpg','Área coberta com pergolado, redes e quadra de areia'],['dia-2.jpg','Mesa de madeira maciça e bancos sob o telhado'],['dia-3.jpg','Quadra de areia vista da área coberta']]},
+    noite:{titulo:'O Geo de noite',outro:'dia',fotos:[['noite-1.jpg','Piscina, deck e cobertura com lanternas de palha'],['noite-2.jpg','Piscina com palmeiras e painéis iluminados'],['noite-3.jpg','Quadra de areia e placa do Geo à noite']]}
+  };
+  var gal=document.getElementById('gallery'),grid=document.getElementById('grid'),gt=document.getElementById('gtitle');
+  var scene=document.getElementById('scene'),tog=document.getElementById('tog'),orbit=document.getElementById('orbit'),tl=document.getElementById('tlabel');
+  var cur='dia',idx=0,angle=0,timer;
+  var st=scene.querySelector('.stars');
+  for(var s=0;s<46;s++){var e=document.createElement('i'),z=1+Math.random()*2.2;e.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*66+'%;width:'+z+'px;height:'+z+'px;animation-delay:'+(Math.random()*3)+'s';st.appendChild(e)}
+
+  function render(mode){
+    var d=photos[mode];gt.textContent=d.titulo;grid.innerHTML='';
+    d.fotos.forEach(function(f,i){
+      var b=document.createElement('button');b.type='button';b.style.animationDelay=(i*.12)+'s';
+      b.setAttribute('aria-label','Ampliar foto '+(i+1));
+      var im=new Image();im.src=f[0];im.alt=f[1];im.loading='lazy';b.appendChild(im);
+      b.onclick=function(){open(i)};grid.appendChild(b);
+    });
+  }
+  function show(mode,animate){
+    cur=mode;var n=mode==='noite';
+    body.classList.toggle('night',n);scene.classList.toggle('night',n);
+    tog.setAttribute('aria-checked',n);tl.textContent=n?'Virar o dia':'Virar a noite';
+    document.querySelector('meta[name=theme-color]').setAttribute('content',n?'#050a1c':'#0c1a1d');
+    if(!animate){render(mode);return}
+    angle+=180;orbit.style.transform='rotate('+angle+'deg)';
+    scene.classList.add('turning');grid.classList.add('out');
+    clearTimeout(timer);
+    setTimeout(function(){render(cur);grid.classList.remove('out')},700);
+    timer=setTimeout(function(){scene.classList.remove('turning')},1750);
+  }
+  tog.onclick=function(){show(cur==='dia'?'noite':'dia',true)};
+  show('dia',false);
+
+  /* lightbox */
+  var lb=document.getElementById('lb'),li=lb.querySelector('img');
+  function open(i){idx=i;set();lb.classList.add('on');body.classList.add('lock')}
+  function set(){var f=photos[cur].fotos[idx];li.src=f[0];li.alt=f[1]}
+  function close(){lb.classList.remove('on');body.classList.remove('lock')}
+  function go(n){var l=photos[cur].fotos.length;idx=(idx+n+l)%l;set()}
+  lb.querySelector('.x').onclick=close;lb.querySelector('.p').onclick=function(){go(-1)};lb.querySelector('.n').onclick=function(){go(1)};
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});
+  var sx=0;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)go(d<0?1:-1)});
+})();
+</script>
+</body>
+</html>
